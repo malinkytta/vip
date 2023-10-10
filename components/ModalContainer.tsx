@@ -6,10 +6,9 @@ import styled from 'styled-components'
 interface IProps {
 	visible: boolean
 	onClose: () => void
-	onShow: () => void
 }
 
-const ModalContainer: React.FC<IProps> = ({ visible, onClose, onShow }) => {
+const ModalContainer: React.FC<IProps> = ({ visible, onClose }) => {
 	return (
 		<>
 			<Modal animationType='fade' transparent={true} visible={visible}>

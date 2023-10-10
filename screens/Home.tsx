@@ -50,11 +50,7 @@ const HomeScreen = () => {
 					</GreenButton>
 				</Wrapper>
 
-				<ModalContainer
-					visible={modalVisible}
-					onClose={closeModal}
-					onShow={openModal}
-				/>
+				<ModalContainer visible={modalVisible} onClose={closeModal} />
 				<StatusBar style='auto' />
 			</ScrollView>
 
