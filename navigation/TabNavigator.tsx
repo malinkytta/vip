@@ -1,38 +1,62 @@
-import { NavigationContainer } from '@react-navigation/native'
+import {
+	NavigationContainer,
+	NavigatorScreenParams,
+} from '@react-navigation/native'
 import Home from '../screens/Home'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {
+	createBottomTabNavigator,
+	BottomTabBarButtonProps,
+} from '@react-navigation/bottom-tabs'
 import Settings from '../screens/Settings'
 import { AntDesign } from '@expo/vector-icons'
 import Gallery from '../screens/Gallery'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Image } from 'react-native'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { useIsFocused } from '@react-navigation/native'
 
-const Tab = createBottomTabNavigator()
+interface HomeScreenParams {}
+interface SettingsParams {}
+
+interface VipMonkeyParams {}
+
+export type TabBarType = {
+	Home: NavigatorScreenParams<undefined>
+	Settings: NavigatorScreenParams<SettingsParams>
+	VipMonkey: NavigatorScreenParams<VipMonkeyParams>
+}
+
+const Tab = createBottomTabNavigator<TabBarType>()
 
 interface CustomTabBarIconProps {
 	imageSource: number
 }
 
 const CustomTabBarIcon: React.FC<CustomTabBarIconProps> = ({ imageSource }) => {
+	const isFocused = useIsFocused()
+
 	return (
-		<IconCircle>
+		<IconCircle focusable={isFocused}>
 			<StyledIcon source={imageSource} />
 		</IconCircle>
 	)
 }
 
 const SettingsTabBarIcon: React.FC = () => {
+	const isFocused = useIsFocused()
+
 	return (
-		<IconCircle>
+		<IconCircle focusable={isFocused}>
 			<AntDesign name='setting' size={24} color='black' />
 		</IconCircle>
 	)
 }
 
 const WalletTabBarIcon = () => {
+	const isFocused = useIsFocused()
+
 	return (
-		<IconCircle>
+		<IconCircle focusable={isFocused}>
 			<Ionicons name='wallet-outline' size={24} color='black' />
 		</IconCircle>
 	)
@@ -43,6 +67,8 @@ const TabGroup = () => {
 		<Tab.Navigator
 			initialRouteName='Home'
 			screenOptions={{
+				// tabBarActiveBackgroundColor: 'blue',
+				// tabBarInactiveBackgroundColor: 'green',
 				headerShown: false,
 				tabBarStyle: {
 					backgroundColor: 'black',
@@ -52,7 +78,7 @@ const TabGroup = () => {
 			}}
 		>
 			<Tab.Screen
-				name='VIP-monkey'
+				name='VipMonkey'
 				component={Gallery}
 				options={{
 					tabBarIcon: () => <WalletTabBarIcon />,
@@ -64,11 +90,13 @@ const TabGroup = () => {
 				name='Home'
 				component={Home}
 				options={{
-					tabBarIcon: () => (
-						<CustomTabBarIcon
-							imageSource={require('../assets/monkeyHead.png')}
-						/>
-					),
+					tabBarIcon: () => {
+						return (
+							<CustomTabBarIcon
+								imageSource={require('../assets/monkeyHead.png')}
+							/>
+						)
+					},
 					tabBarLabel: '',
 				}}
 			/>
@@ -107,4 +135,15 @@ const IconCircle = styled(View)`
 	align-items: center;
 	justify-content: center;
 	margin-top: 25px;
+	${(props) =>
+		props.focusable &&
+		css`
+			border: 2px solid white;
+			${''}
+			shadowColor: white;
+			${''}
+			shadowOpacity: 0.6;
+			${''}
+			shadowRadius: 9px;
+		`}
 `
