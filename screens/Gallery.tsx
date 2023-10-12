@@ -1,5 +1,4 @@
 import { ScrollView } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
 import styled from 'styled-components/native'
 
 const images = [
@@ -21,7 +20,6 @@ const Gallery = () => {
 					))}
 				</GridContainer>
 			</ScrollView>
-			<StatusBar style='auto' />
 		</ScSafeAreaView>
 	)
 }

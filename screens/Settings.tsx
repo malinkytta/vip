@@ -1,5 +1,4 @@
 import { Text } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
 import styled from 'styled-components/native'
 
 const Settings = () => {
@@ -7,7 +6,6 @@ const Settings = () => {
 		<ScSafeAreaView>
 			<Wrapper>
 				<Text>Hi from Settings Page</Text>
-				<StatusBar style='auto' />
 			</Wrapper>
 		</ScSafeAreaView>
 	)
