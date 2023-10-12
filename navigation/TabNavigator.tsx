@@ -2,28 +2,26 @@ import {
 	NavigationContainer,
 	NavigatorScreenParams,
 } from '@react-navigation/native'
-import Home from '../screens/Home'
-import {
-	createBottomTabNavigator,
-	BottomTabBarButtonProps,
-} from '@react-navigation/bottom-tabs'
-import Settings from '../screens/Settings'
-import { AntDesign } from '@expo/vector-icons'
-import Gallery from '../screens/Gallery'
-import { Ionicons } from '@expo/vector-icons'
 import { View, Image } from 'react-native'
-import styled, { css } from 'styled-components'
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useIsFocused } from '@react-navigation/native'
+import styled, { css } from 'styled-components'
+import { AntDesign } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
+
+import Home from '../screens/Home'
+import Gallery from '../screens/Gallery'
+import Settings from '../screens/Settings'
 
 interface HomeScreenParams {}
 interface SettingsParams {}
-
-interface VipMonkeyParams {}
+interface GalleryParams {}
 
 export type TabBarType = {
-	Home: NavigatorScreenParams<undefined>
+	Home: NavigatorScreenParams<HomeScreenParams>
 	Settings: NavigatorScreenParams<SettingsParams>
-	VipMonkey: NavigatorScreenParams<VipMonkeyParams>
+	Gallery: NavigatorScreenParams<GalleryParams>
 }
 
 const Tab = createBottomTabNavigator<TabBarType>()
@@ -67,8 +65,6 @@ const TabGroup = () => {
 		<Tab.Navigator
 			initialRouteName='Home'
 			screenOptions={{
-				// tabBarActiveBackgroundColor: 'blue',
-				// tabBarInactiveBackgroundColor: 'green',
 				headerShown: false,
 				tabBarStyle: {
 					backgroundColor: 'black',
@@ -78,7 +74,7 @@ const TabGroup = () => {
 			}}
 		>
 			<Tab.Screen
-				name='VipMonkey'
+				name='Gallery'
 				component={Gallery}
 				options={{
 					tabBarIcon: () => <WalletTabBarIcon />,
