@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { SafeAreaView, TextInput, Alert, View } from 'react-native'
+import React, { useState } from 'react'
+import { SafeAreaView, View } from 'react-native'
 import styled from 'styled-components'
 import { ScButtonText, ScGreenButton, ScButtonClose } from './styles/Buttons'
-import Select from './Select'
 import FirstScreen from './FirstScreen'
 import ConfirmScreen from './ConfirmScreen'
 import ValidatedScreen from './ValidatedScreen'
@@ -20,7 +19,7 @@ const Form: React.FC<IProps> = ({ onHide }) => {
 	const [currentScreen, setCurrentScreen] = useState('firstScreen')
 
 	return (
-		<FormArea>
+		<ScSafeAreaView>
 			{currentScreen === 'firstScreen' && (
 				<FirstScreen
 					email={email}
@@ -70,13 +69,13 @@ const Form: React.FC<IProps> = ({ onHide }) => {
 					</ScButtonClose>
 				</ScContainer>
 			)}
-		</FormArea>
+		</ScSafeAreaView>
 	)
 }
 
 export default Form
 
-const FormArea = styled(SafeAreaView)`
+const ScSafeAreaView = styled(SafeAreaView)`
 	align-self: center;
 	justify-content: center;
 `
