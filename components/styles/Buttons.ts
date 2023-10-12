@@ -1,7 +1,6 @@
 import { Pressable, Text } from "react-native";
 import styled, { css } from "styled-components";
 
-
 const commonButtonStyles = css`
 border-radius: 20px;
 padding: 10px;
@@ -19,13 +18,13 @@ background-color: #eee;
 ${commonButtonStyles}
 `
 
-export const GreenButton = styled(Pressable)`
+export const ScGreenButton = styled(Pressable)`
 background-color: #00EBB0;
 opacity: ${props => (props.disabled ? 0.4 : 1)};
 ${commonButtonStyles};
 `
 
-export const ButtonText = styled(Text)`
+export const ScButtonText = styled(Text)`
 text-transform: uppercase;
 font-weight: 600;
 `
