@@ -23,7 +23,7 @@ interface IProps {
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 
-const ModalScreens: React.FC<IProps> = ({
+const FirstScreen: React.FC<IProps> = ({
 	email,
 	setEmail,
 	setCurrentScreen,
@@ -68,10 +68,12 @@ const ModalScreens: React.FC<IProps> = ({
 			/>
 			<Select tickets={tickets} setTickets={setTickets} />
 			<ScGreenButton onPress={() => handlePress(email, tickets)}>
-				<ScButtonText>Ge bort biljett(er)</ScButtonText>
+				<ScButtonText>
+					Ge bort {tickets === '1' ? 'biljett' : 'biljetter'}
+				</ScButtonText>
 			</ScGreenButton>
 		</>
 	)
 }
 
-export default ModalScreens
+export default FirstScreen

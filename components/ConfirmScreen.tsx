@@ -56,7 +56,9 @@ const ConfirmScreen: React.FC<IProps> = ({
 			<ScSubTitle>{email}</ScSubTitle>
 			<ScSubTitle>Antal: {tickets}</ScSubTitle>
 			<ScGreenButton onPress={() => handleConfirm(email)}>
-				<ScButtonText>Ge bort biljett(er)</ScButtonText>
+				<ScButtonText>
+					Ge bort {tickets === '1' ? 'biljett' : 'biljetter'}
+				</ScButtonText>
 			</ScGreenButton>
 		</ScContainer>
 	)

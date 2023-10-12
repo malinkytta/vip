@@ -56,6 +56,7 @@ const Form: React.FC<IProps> = ({ onHide }) => {
 					setError={setError}
 				/>
 			)}
+
 			{success ? (
 				<ScContainer>
 					<ScGreenButton onPress={onHide}>

@@ -45,7 +45,7 @@ const ValidatedScreen: React.FC<IProps> = ({
 			</ScContent>
 			<ScText>
 				{error
-					? 'Det gick inte att ge bort biljetter eftersom e-postadressen inte är registrerad i Vip-Monkeys system.'
+					? `Det gick inte att ge bort biljetter eftersom ${email} inte är registrerad i Vip-Monkeys system.`
 					: 'Allt gick bra och du har nu gett bort biljetter till nedanstående e-postadress.'}
 			</ScText>
 			{error ? (
