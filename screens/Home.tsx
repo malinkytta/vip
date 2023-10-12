@@ -1,28 +1,18 @@
 import { Text, Image, ScrollView } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
 import styled from 'styled-components/native'
 import { useState } from 'react'
 import ModalContainer from '../components/ModalContainer'
-import { GreenButton, ButtonText } from '../components/Buttons'
+import { ScGreenButton, ScButtonText } from '../components/styles/Buttons'
 import Carousel from 'react-native-snap-carousel'
 
+const carouselData = [
+	{ imageSource: require('../assets/QR.png') },
+	{ imageSource: require('../assets/QR.png') },
+	{ imageSource: require('../assets/QR.png') },
+]
+
 const HomeScreen = () => {
-	const [modalVisible, setModalVisible] = useState(false)
 	const [showTickets, setShowTickets] = useState(true)
-
-	const openModal = () => {
-		setModalVisible(true)
-	}
-
-	const closeModal = () => {
-		setModalVisible(false)
-	}
-
-	const carouselData = [
-		{ imageSource: require('../assets/QR.png') },
-		{ imageSource: require('../assets/QR.png') },
-		{ imageSource: require('../assets/QR.png') },
-	]
 
 	const hideTickets = () => {
 		setShowTickets(!showTickets)
@@ -40,18 +30,14 @@ const HomeScreen = () => {
 						Solgården, Hotell Tylösand - Halmstad
 					</ContentText>
 					<ContentText>2021-12-24</ContentText>
-					<GreenButton onPress={hideTickets}>
-						<ButtonText>
+					<ScGreenButton onPress={hideTickets}>
+						<ScButtonText>
 							{showTickets ? 'Dölj biljetter' : 'Visa biljetter'}
-						</ButtonText>
-					</GreenButton>
-					<GreenButton onPress={openModal}>
-						<ButtonText>Ge bort biljetter</ButtonText>
-					</GreenButton>
+						</ScButtonText>
+					</ScGreenButton>
 				</Wrapper>
 
-				<ModalContainer visible={modalVisible} onClose={closeModal} />
-				<StatusBar style='auto' />
+				<ModalContainer />
 			</ScrollView>
 
 			{showTickets && (

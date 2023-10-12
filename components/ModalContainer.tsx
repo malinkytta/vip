@@ -1,25 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, View } from 'react-native'
 import Form from './Form'
 import styled from 'styled-components'
+import { ScButtonText, ScGreenButton } from './styles/Buttons'
 
-interface IProps {
-	visible: boolean
-	onClose: () => void
-}
+const ModalContainer = () => {
+	const [modalVisible, setModalVisible] = useState(false)
 
-const ModalContainer: React.FC<IProps> = ({ visible, onClose }) => {
+	const openModal = () => {
+		setModalVisible(true)
+	}
+
+	const closeModal = () => {
+		setModalVisible(false)
+	}
+
 	return (
 		<>
-			<Modal animationType='fade' transparent={true} visible={visible}>
+			<Modal
+				animationType='fade'
+				transparent={true}
+				visible={modalVisible}
+			>
 				<Overlay>
 					<CenteredView>
 						<ModalView>
-							<Form onHide={onClose} />
+							<Form onHide={closeModal} />
 						</ModalView>
 					</CenteredView>
 				</Overlay>
 			</Modal>
+			<ScWrapper>
+				<ScGreenButton onPress={openModal}>
+					<ScButtonText>Ge bort biljetter</ScButtonText>
+				</ScGreenButton>
+			</ScWrapper>
 		</>
 	)
 }
@@ -30,6 +45,10 @@ const Overlay = styled(View)`
 	flex: 1;
 	background-color: rgba(0, 0, 0, 0.8);
 	justify-content: center;
+	align-items: center;
+`
+
+const ScWrapper = styled(View)`
 	align-items: center;
 `
 
