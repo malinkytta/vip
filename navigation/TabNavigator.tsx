@@ -11,17 +11,17 @@ import { AntDesign } from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons'
 
 import Home from '../screens/Home'
-import Gallery from '../screens/Gallery'
+import CountDownScreen from '../screens/CountDownScreen'
 import Settings from '../screens/Settings'
 
 interface HomeScreenParams {}
 interface SettingsParams {}
-interface GalleryParams {}
+interface CountDownScreenParams {}
 
 export type TabBarType = {
 	Home: NavigatorScreenParams<HomeScreenParams>
 	Settings: NavigatorScreenParams<SettingsParams>
-	Gallery: NavigatorScreenParams<GalleryParams>
+	CountDownScreen: NavigatorScreenParams<CountDownScreenParams>
 }
 
 const Tab = createBottomTabNavigator<TabBarType>()
@@ -74,8 +74,8 @@ const TabGroup = () => {
 			}}
 		>
 			<Tab.Screen
-				name='Gallery'
-				component={Gallery}
+				name='CountDownScreen'
+				component={CountDownScreen}
 				options={{
 					tabBarIcon: () => <WalletTabBarIcon />,
 					tabBarLabel: '',
