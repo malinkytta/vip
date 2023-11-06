@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
-import styled from "styled-components";
+import { Text, View, Animated } from "react-native";
+import styled from "styled-components/native";
 
 const Countdown = () => {
     const targetDate = new Date('2023-12-24T00:00:00.000Z');
@@ -16,19 +16,13 @@ const Countdown = () => {
 
     React.useEffect(() => {
         const timer = setInterval(() => {
-            const newCountdown = calculateTimeRemaining(targetDate);
-            if (newCountdown > 0) {
-                setCountdown(newCountdown);
-            } else {
-                setCountdownCompleted(true);
-                clearInterval(timer)
-            }
+            setCountdown(calculateTimeRemaining(targetDate))
         }, 1000);
 
         return () => {
             clearInterval(timer);
         };
-    }, [targetDate]);
+    }, [countdown]);
 
     const days = String(Math.floor(countdown / (1000 * 60 * 60 * 24))).padStart(2, '0');
     const hours = String(Math.floor((countdown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
@@ -38,14 +32,12 @@ const Countdown = () => {
     return (
 
         <ScContainer>
-
             <ScCountDownContainer>
                 {countdownCompleted ? (
-                        <ScTextInfo>Congratulations! The countdown is complete.</ScTextInfo>
+                    <ScTextInfo>Congratulations! The countdown is complete.</ScTextInfo>
                 ) : (
                     <>
-                            <ScTextInfo>Produkten är tillgänglig för köp om:</ScTextInfo>
-
+                        <ScTextInfo>Produkten är tillgänglig för köp om:</ScTextInfo>
                         <ScFlexContainer>
                             <ScColumn>
                                 <ScCountdownText>{days}</ScCountdownText>
@@ -82,7 +74,7 @@ const ScContainer = styled(View)`
   align-items: center; 
   justify-content: center;
   align-content: center;
-  height: 100vh;
+  /* height: 100%; */
   padding: 20px;
 `
 
